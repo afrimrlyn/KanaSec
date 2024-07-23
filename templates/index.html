@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Safety Check</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="header-background">
+        <div class="header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Check Link Logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Products <i class="fas fa-angle-down"></i></a></li>
+                    <li><a href="#">Tools <i class="fas fa-angle-down"></i></a></li>
+                    <li><a href="#">Resources <i class="fas fa-angle-down"></i></a></li>
+                    <li><a href="{{ url_for('logout') }}" style="float: right;">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="url-check">
+            <form method="POST">
+                <div class="form-container">
+                    <a class="security-message">Check your URLs for the security of your data</a>
+                    <p class="phishing-message">Detect phishing or fraud</p>
+                    <input type="text" id="url" name="url" placeholder="Enter URL" required>
+                    <button type="submit">Check</button>
+                </div>
+            </form>
+            {% if result is not none %}
+            <div class="analysis-container">
+                <a>URL Analysed:</a><span href="{{ request.form['url'] }}" target="_blank">{{ request.form['url'] }}</span>
+            </div> 
+            <div class="result-container">
+                <div class="result-content">
+                    <h2>KANA RATING:</h2><img src="{{ url_for('static', filename='images/' ~ ('warning.png' if result == 'Warning' else 'safe.png')) }}" alt="{{ result }}" class="result-icon"><span class="result-text">{{ result }}</span>
+                </div>
+            </div>
+
+            {% if analysis %}
+            <div class="table-container">
+                <!-- Tabel pertama -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Engine</th>
+                            <th>Result</th>
+                            <th>Detection Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in analysis[0::3] %}
+                            <tr>
+                                <td>{{ item['engine'] }}</td>
+                                <td>{{ item['result'] }}</td>
+                                <td>
+                                    {% if item['detected'] %}
+                                        <span style="color: red;">Detected as {{ item['result'] }}</span>
+                                    {% else %}
+                                        <span style="color: green;">No threats detected</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        
+                <!-- Tabel kedua -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Engine</th>
+                            <th>Result</th>
+                            <th>Detection Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in analysis[1::3] %}
+                            <tr>
+                                <td>{{ item['engine'] }}</td>
+                                <td>{{ item['result'] }}</td>
+                                <td>
+                                    {% if item['detected'] %}
+                                        <span style="color: red;">Detected as {{ item['result'] }}</span>
+                                    {% else %}
+                                        <span style="color: green;">No threats detected</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        
+                <!-- Tabel ketiga -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Engine</th>
+                            <th>Result</th>
+                            <th>Detection Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in analysis[2::3] %}
+                            <tr>
+                                <td>{{ item['engine'] }}</td>
+                                <td>{{ item['result'] }}</td>
+                                <td>
+                                    {% if item['detected'] %}
+                                        <span style="color: red;">Detected as {{ item['result'] }}</span>
+                                    {% else %}
+                                        <span style="color: green;">No threats detected</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+                    {% if result == 'Warning' %}
+                        <h3>Report a Dangerous URL</h3>
+                        <form method="POST">
+                            <input type="hidden" name="report_url" value="{{ request.form['url'] }}">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required><br>
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required><br>
+                            <label for="reason">Reason for Reporting:</label>
+                            <textarea id="reason" name="reason" required></textarea><br>
+                            <button type="submit">Submit Report</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {% if report_submitted %}
+                <h3>Thank you for your report. It has been submitted successfully.<footer><a href="{{ url_for('view_reports') }}">View Reports</a></footer></h3>
+            {% endif %}
+    </main>
+
+    <div>
+        <a class="recently-message">Recently Checked</a>
+        <div class="tableds-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                        <th>Kana Rating</th>
+                        <th>Date Checked</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for link in dangerous_links %}
+                        <tr>
+                            <td>{{ link.url }}</td>
+                            <td>{{ 'Warning' }}</td>
+                            <td>{{ link.date_checked.strftime('%Y-%m-%d %H:%M:%S') }}</td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                        <th>Kana Rating</th>
+                        <th>Date Checked</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for link in safe_links %}
+                        <tr>
+                            <td>{{ link.url }}</td>
+                            <td>{{ 'Safe' }}</td>
+                            <td>{{ link.date_checked.strftime('%Y-%m-%d %H:%M:%S') }}</td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+</body>
+</html>
