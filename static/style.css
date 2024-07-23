@@ -1,0 +1,328 @@
+body {
+    font-family: Helvetica;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-background {
+    background-color: white;
+    color: white;
+    padding: 15px 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 60px;
+    margin-right: 10px;
+}
+
+.title {
+    font-size: 24px;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #1e2e49;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding-top: 80px; 
+}
+
+.security-message {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.phishing-message {
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#url-check {
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+header h1 {
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    padding: 20px;
+    text-align: center;
+}
+
+
+form {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+label {
+    margin-right: 10px;
+    display: inline-block;
+    width: calc(100% - 130px);
+    font-weight: bold;
+    color: #1e2e49;
+    margin-left: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 70px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+    color: #1e2e49;
+    margin-left: 20px;
+}
+
+input[type="text"]::placeholder {
+    color: #999;
+}
+
+
+textarea {
+    height: 100px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1e2e49;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+button:hover {
+    background-color: #1e2e49;
+}
+
+p {
+    color: #808080;
+}
+
+h2 {
+    color: #1e2e49;
+    font-weight: normal;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+span {
+    font-weight: bold;
+}
+
+h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #1e2e49;
+}
+
+.recently-message {
+    display: flex;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.table-container {
+    display: flex;
+    justify-content: space-between; /* Membuat tabel sejajar dengan jarak antara mereka */
+    gap: 10px; /* Jarak antara tabel */
+    font-size: 12px; /* Ukuran teks lebih kecil */
+
+}
+
+.tableds-container {
+    display: flex;
+    justify-content: center; /* Membuat tabel sejajar dengan jarak antara mereka */
+    gap: 20px; /* Jarak antara tabel */
+    font-size: 12px; /* Ukuran teks lebih kecil */
+    width: 100%; /* Ensure the container uses the full width of the parent */
+    
+}
+
+table {
+    margin-top: 10px;
+    width: 32%; /* Lebar tabel agar tiga tabel bisa sejajar dalam satu baris */
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid black; /* Menambahkan border pada tabel */
+}
+
+th {
+    background-color: #a4c3de; /* Warna latar belakang untuk header tabel */
+}
+
+a {
+    color: #1e2e49;
+}
+
+.result-container {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.result-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.result-icon {
+    width: 45px; 
+    height: 45px; /
+}
+
+.result-text {
+    font-size: 30px; 
+    font-weight: bold;
+}
+
+.analysis-container {
+    align-items: center;
+    text-align: center;
+    text-decoration: underline;
+    padding: 10px;  
+    font-size: 13px;
+}
+
+.flashes {
+    list-style-type: none;
+    padding: 0;
+}
+
+.flashes li {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.flashes .success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flashes .error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Additional styles for welcome page */
+.container {
+    text-align: center;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.container li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.container a {
+    display: block;
+    padding: 15px 30px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px #ff5f91;
+    margin-bottom: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.container a:hover {
+    background-color: #ff5f91;
+}
